@@ -1,21 +1,39 @@
 import React, { useState } from "react";
-import "./App.css";
 
-function App() {
-  const [data, setData] = useState(0);
-  const getData = () => {
-    console.log("Value");
+const App = () => {
+  const [name, setName] = useState("");
+  const [list, setList] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(name);
+    const data = { name };
+    if (name) {
+      setList((ls) => [...ls, data]);
+      setName("");
+    }
   };
 
   return (
     <div className="App">
-      <h1>Please input your data here</h1>
-      <input type="text" placeholder="Input Your data" required></input>
-      <button type="submit" onClick={getData}>
-        ADD
-      </button>
+      <h1>Dispaly Data</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          name="name"
+          placeholder="Enter your Data"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <button>ADD</button>
+      </form>
+
+      {list.map((a) => (
+        <div>
+          <li>{a.name}</li>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
