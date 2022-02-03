@@ -2,36 +2,45 @@ import React, { useState } from "react";
 
 const App = () => {
   const [name, setName] = useState("");
-  const [list, setList] = useState("");
+  const [email, setEmail] = useState("");
+  const [list, setList] = useState([]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(name);
-    const data = { name };
-    if (name) {
+    console.log(name, email);
+    const data = { name, email };
+    if (name && email) {
       setList((ls) => [...ls, data]);
       setName("");
+      setEmail("");
     }
   };
 
   return (
-    <div className="App">
-      <h1>Dispaly Data</h1>
+    <div>
+      <h1>Hello world</h1>
       <form onSubmit={handleSubmit}>
         <input
           name="name"
-          placeholder="Enter your Data"
+          placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <button>ADD</button>
-      </form>
+        <input
+          name="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      {list.map((a) => (
-        <div>
-          <li>{a.name}</li>
-        </div>
-      ))}
+        <button>ADD</button>
+        {list.map((a) => (
+          <div>
+            <li>{a.name}</li>
+            <li>{a.email}</li>
+          </div>
+        ))}
+      </form>
     </div>
   );
 };
