@@ -7,7 +7,6 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email);
     const data = { name, email };
     if (name && email) {
       setList((ls) => [...ls, data]);
